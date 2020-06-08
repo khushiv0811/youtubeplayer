@@ -9,15 +9,44 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    ///
     var window: UIWindow?
-
+    ///
+     let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowscene = (scene as? UIWindowScene) else
+        { return }
+        //Set root View Controller
+               
+              
+              self.window = UIWindow(windowScene: windowscene)
+               
+                let nvc:UINavigationController = storyboard.instantiateViewController(withIdentifier: "rootnav") as! UINavigationController
+              
+               
+               if UserDefaults.standard.object(forKey: "Channelid") as? String == nil
+               {
+                   
+                   let rootVC = storyboard.instantiateViewController(withIdentifier: "SignIn_VC") as! SignIn_VC
+                    nvc.viewControllers = [rootVC]
+                    window?.rootViewController = nvc
+               }
+               else
+               {
+               let playlist = storyboard.instantiateViewController(withIdentifier: "Playlist_TVC") as! Playlist_TVC
+              
+                        
+                 nvc.viewControllers = [playlist]
+                 
+                 window?.rootViewController = nvc
+              
+               }
+               self.window?.makeKeyAndVisible()
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
