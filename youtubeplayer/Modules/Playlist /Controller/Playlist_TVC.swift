@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class Playlist_TVC: UITableViewController
 {
@@ -81,6 +82,15 @@ class Playlist_TVC: UITableViewController
     @IBAction func onclick_downloads(_ sender: Any?)
     {
         self.performSegue(withIdentifier: "downloads_segue", sender:   self)
+    }
+    
+    @IBAction func onclick_TapSignOut(_ sender: AnyObject)
+    {
+      GIDSignIn.sharedInstance().signOut()
+        UserDefaults.standard.removeObject(forKey: "Channelid")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+               let rootVC = storyboard.instantiateViewController(withIdentifier: "SignIn_VC") as! SignIn_VC
+               self.navigationController?.pushViewController(rootVC, animated: false)
     }
 
     // MARK: - Table view data source

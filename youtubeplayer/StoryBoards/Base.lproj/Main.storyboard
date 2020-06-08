@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DQo-lk-xSv" customClass="GIDSignInButton">
-                                <rect key="frame" x="40" y="242" width="240" height="128"/>
+                                <rect key="frame" x="40" y="220" width="240" height="128"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="cAP-hy-2sa"/>
@@ -24,17 +24,17 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click here to login with your Gmail Account" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yob-wk-J4f">
-                                <rect key="frame" x="60" y="130" width="200" height="80"/>
+                                <rect key="frame" x="60" y="108" width="200" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="VOL-xr-mll"/>
                                     <constraint firstAttribute="height" constant="80" id="baa-IS-Hn5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="DQo-lk-xSv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="dhf-3B-HEu"/>
                             <constraint firstItem="yob-wk-J4f" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="k9w-2p-P5E"/>
@@ -44,6 +44,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="sG3-Gy-WsE"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="signInButton" destination="DQo-lk-xSv" id="PvN-Va-nbc"/>
                         <segue destination="k3L-zb-qeh" kind="show" identifier="playlist_segue" id="qnn-Mu-Ie2"/>
@@ -274,6 +275,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="PLAYLISTS" id="Zln-yv-BAE">
+                        <barButtonItem key="leftBarButtonItem" image="icons8-sign-out-30" id="Eh0-R4-toB">
+                            <connections>
+                                <action selector="onclick_TapSignOut:" destination="k3L-zb-qeh" id="Woc-Ly-S3F"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="download" id="Nno-c4-baU">
                             <connections>
                                 <action selector="onclick_downloads:" destination="k3L-zb-qeh" id="Lve-PE-2BO"/>
@@ -572,20 +578,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2y-6Z-wHa" customClass="YoutubePlayerView" customModule="YoutubePlayerView">
-                                <rect key="frame" x="0.0" y="44" width="320" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="t1e-kx-8Cf"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orf-Es-zga">
-                                <rect key="frame" x="20" y="358" width="280" height="20.5"/>
+                                <rect key="frame" x="20" y="314" width="280" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAa-rD-Kji">
-                                <rect key="frame" x="20" y="398.5" width="280" height="21"/>
+                                <rect key="frame" x="20" y="354.5" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="iuK-i7-adQ"/>
                                 </constraints>
@@ -594,7 +600,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIa-Bc-P7H" customClass="rounded_view" customModule="youtubeplayer" customModuleProvider="target">
-                                <rect key="frame" x="35" y="439.5" width="250" height="50"/>
+                                <rect key="frame" x="35" y="395.5" width="250" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoW-6K-OCG">
                                         <rect key="frame" x="25" y="10" width="30" height="30"/>
@@ -675,6 +681,7 @@
     </scenes>
     <resources>
         <image name="download" width="30" height="30"/>
+        <image name="icons8-sign-out-30" width="30" height="30"/>
         <image name="next" width="30" height="30"/>
         <image name="noimage" width="24" height="24"/>
         <image name="play" width="30" height="30"/>

@@ -19,13 +19,19 @@ class SignIn_VC: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Set up google sign
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-        let scope: NSString = "https://www.googleapis.com/auth/youtube.readonly"
-        let currentScopes: NSArray = GIDSignIn.sharedInstance().scopes! as NSArray
-        GIDSignIn.sharedInstance().scopes = currentScopes.adding(scope)
-        GIDSignIn.sharedInstance().signIn()
-        GIDSignIn.sharedInstance().delegate = self
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        googlesignin()
+    }
+    //MARK:- Google Sign in
+    func googlesignin()
+    {
+    // Set up google sign
+           GIDSignIn.sharedInstance()?.presentingViewController = self
+           let scope: NSString = "https://www.googleapis.com/auth/youtube.readonly"
+           let currentScopes: NSArray = GIDSignIn.sharedInstance().scopes! as NSArray
+           GIDSignIn.sharedInstance().scopes = currentScopes.adding(scope)
+           GIDSignIn.sharedInstance().signIn()
+           GIDSignIn.sharedInstance().delegate = self
     }
 
    //MARK:- Get Channel id
@@ -38,13 +44,19 @@ class SignIn_VC: UIViewController {
              if success
              {
                 let dict_json : NSDictionary = result as! NSDictionary
+               if dict_json["items"] != nil
+               {
                 let arr_items  : NSArray = dict_json["items"] as! NSArray
                 let dict : NSDictionary = arr_items[0] as! NSDictionary
                 let channelid : String =  dict["id"] as! String
                 UserDefaults.standard.set(channelid, forKey: "Channelid")
              self.performSegue(withIdentifier: "playlist_segue", sender: self)
             }
-                          
+                else
+               {
+                self.showtoast(message: "Could not Fetch your Youtube channel. Please Create a channel and then try again")
+                }
+                }
             })
     }
     
@@ -76,8 +88,15 @@ extension SignIn_VC : GIDSignInDelegate
        //  let familyName = user.profile.familyName
       //   let email = user.profile.email
          // ...
-           print(user.authentication.accessToken! )
+          
+        if user.authentication.accessToken.isEmpty == false
+        {
         self.getchannelid(accesstoken: user.authentication.accessToken)
+        }
+        else
+        {
+            showtoast(message: "Could not retrieve your account details")
+        }
        }
        
        func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
